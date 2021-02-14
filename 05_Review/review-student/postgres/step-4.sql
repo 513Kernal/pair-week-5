@@ -64,12 +64,12 @@ ORDER BY reservation.from_date;
   -------------------------------------------------
 */
 
-SELECT campground.name, COUNT(reservation.site_id) AS total_reservations
+SELECT campground.name, COUNT(reservation_id) AS total_reservations
 FROM campground
 JOIN site ON site.campground_id = campground.campground_id
 JOIN reservation ON reservation.site_id = site.site_id
-GROUP BY campground.name, reservation.site_id
-ORDER BY reservation.site_id DESC;
+GROUP BY campground.name
+ORDER BY COUNT(reservation_id) DESC;
 
 
 
